@@ -22,7 +22,7 @@ cp testing-jenkins.yml jenkins-configuration
 
 docker build -t localhost:5000/ppiper/cf-cli:latest ..
 docker tag localhost:5000/ppiper/cf-cli:latest ppiper/cf-cli:latest
-docker push localhost:5000/ppiper/jenkins-master:latest
+docker push localhost:5000/ppiper/cf-cli:latest
 
 # Boot our unit-under-test Jenkins master instance using the `cx-server` script
 TEST_ENVIRONMENT=(CX_INFRA_IT_CF_USERNAME CX_INFRA_IT_CF_PASSWORD)
