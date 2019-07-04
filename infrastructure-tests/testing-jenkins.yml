@@ -1,0 +1,23 @@
+jenkins:
+  numExecutors: 10
+jobs:
+  - script: >
+      multibranchPipelineJob('infrastructure-integration') {
+          branchSources {
+              git {
+                  remote("https://github.com/piper-validation/cloud-s4-sdk-book")
+                  includes('infrastructure-integration')
+              }
+          }
+      }
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              scope: GLOBAL
+              id: "devops-docker-images-IT-cf"
+              username: ${CX_INFRA_IT_CF_USERNAME}
+              password: ${CX_INFRA_IT_CF_PASSWORD}
+              description: "SAP CP Trail account."
+
