@@ -10,7 +10,7 @@ Introductory material and a lot of SAP scenarios not covered by project "Piper" 
 This repository contains Dockerfiles that are designed to run project "Piper" pipelines.
 Nevertheless, they can also be used flexibly in any custom environment and automation process.
 
-For detailed usage information please check the README.md in the corresponding folder.
+## About this repository
 
 Dockerfile for an image with the CloudFoundry CLI and plugins for blue-green deployment and MTA.
 This image is intended to be used in Jenkins pipelines.
