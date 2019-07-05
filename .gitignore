@@ -5,3 +5,6 @@ infrastructure-tests/cx-server
 infrastructure-tests/jenkins-configuration/
 infrastructure-tests/server.cfg
 *.DS_Store
+validate-cf-cli.zip
+cloud-s4-sdk-book-validate-cf-cli
+cloud-s4-sdk-book
