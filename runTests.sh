@@ -20,12 +20,15 @@ docker build -t localhost:5000/ppiper/cf-cli:latest .
 docker tag localhost:5000/ppiper/cf-cli:latest ppiper/cf-cli:latest
 docker push localhost:5000/ppiper/cf-cli:latest
 
-git clone https://github.com/piper-validation/cloud-s4-sdk-book.git -b validate-cf-cli
-cd cloud-s4-sdk-book
+git clone https://github.com/piper-validation/cloud-s4-sdk-book.git -b validate-cf-cli test-project
+cd test-project
 
 docker run -v //var/run/docker.sock:/var/run/docker.sock -v $(pwd):/workspace -v /tmp \
  -e CX_INFRA_IT_CF_PASSWORD -e CX_INFRA_IT_CF_USERNAME -e BRANCH_NAME=master \
  -e CASC_JENKINS_CONFIG=/workspace/jenkins.yml -e HOST=$(hostname) \
  ppiper/jenkinsfile-runner
 
-rm -rf cloud-s4-sdk-book
+function cleanup {
+  rm -rf test-project
+}
+trap cleanup EXIT

@@ -29,6 +29,27 @@ For using the `cf` tool via this image, it can be invoked like in this command
 docker run ppiper/cf-cli cf
 ```
 
+## Testing
+
+### Running as a Service
+
+See `.travis.yml` file for configuration.
+
+Configure the following variables (secrets)
+
+* `CX_INFRA_IT_CF_USERNAME` (user name for deployment to SAP Cloud Platform)
+* `CX_INFRA_IT_CF_PASSWORD` (password for deployment to SAP Cloud Platform)
+
+### Running locally
+
+Docker is required, and at least 4 GB of memory assigned to Docker.
+
+```bash
+export CX_INFRA_IT_CF_USERNAME="myusername"
+export CX_INFRA_IT_CF_PASSWORD="mypassword"
+./runTests.sh
+```
+
 ## License
 
 Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
