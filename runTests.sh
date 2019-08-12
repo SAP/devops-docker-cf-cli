@@ -20,7 +20,7 @@ docker build -t localhost:5000/ppiper/cf-cli:latest .
 docker tag localhost:5000/ppiper/cf-cli:latest ppiper/cf-cli:latest
 docker push localhost:5000/ppiper/cf-cli:latest
 
-git clone https://github.com/piper-validation/cloud-s4-sdk-book.git -b validate-cf-cli test-project
+git clone https://github.com/piper-validation/cloud-s4-sdk-book.git -b validate-cf-cli-full-pipeline test-project
 pushd test-project
 
 docker run -v //var/run/docker.sock:/var/run/docker.sock -v $(pwd):/workspace -v /tmp \
