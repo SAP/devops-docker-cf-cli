@@ -1,0 +1,12 @@
+on: push
+name: Lint all Dockerfiles
+jobs:
+  haskellDockerfileLinter:
+    name: Haskell Dockerfile Linter
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Haskell Dockerfile Linter
+      uses: docker://cdssnc/docker-lint-github-action
+      with:
+        args: --ignore DL3008 --ignore DL3013 --ignore DL3016 --ignore DL3018
