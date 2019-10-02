@@ -26,6 +26,7 @@ ARG MTA_PLUGIN_URL=https://github.com/cloudfoundry-incubator/multiapps-cli-plugi
 RUN cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org && \
     cf install-plugin blue-green-deploy -f -r CF-Community && \
     cf install-plugin ${MTA_PLUGIN_URL} -f && \
+    cf install-plugin Create-Service-Push -f -r CF-Community && \
     cf plugins
 
 # allow anybody to read/write/exec at HOME
