@@ -7,6 +7,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # ps needs to be available to be able to be used in docker.inside, see https://issues.jenkins-ci.org/browse/JENKINS-40101
 RUN apt-get update && \
+    apt-get install -y python3-pip python3-dev && \
     apt-get install -y --no-install-recommends procps && \
     rm -rf /var/lib/apt/lists/*
 
