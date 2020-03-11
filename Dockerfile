@@ -20,7 +20,7 @@ RUN addgroup -gid 1000 piper && \
 USER piper
 WORKDIR ${USER_HOME}
 
-ARG MTA_PLUGIN_VERSION=2.1.0
+ARG MTA_PLUGIN_VERSION=2.3.1
 ARG MTA_PLUGIN_URL=https://github.com/cloudfoundry-incubator/multiapps-cli-plugin/releases/download/v${MTA_PLUGIN_VERSION}/mta_plugin_linux_amd64
 
 RUN cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org && \
