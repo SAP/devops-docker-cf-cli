@@ -17,3 +17,4 @@ jobs:
       run: |
         echo ${{ secrets.DH_PW }} | docker login -u ${{ secrets.DH_USER }} --password-stdin
         docker build -t ppiper/cf-cli:latest .
+        docker push ppiper/cf-cli:latest
