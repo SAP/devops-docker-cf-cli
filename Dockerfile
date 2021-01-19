@@ -14,19 +14,18 @@ RUN apt-get update && \
 ARG USER_HOME=/home/piper
 RUN addgroup -gid 1000 piper && \
     useradd piper --uid 1000 --gid 1000 --shell /bin/bash --home-dir "${USER_HOME}" --create-home && \
-    curl --location --silent "https://cli.run.pivotal.io/stable?release=linux64-binary&source=github" | tar -zx -C /usr/local/bin && \
+    curl --location --silent "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=v7&source=github" | tar -zx -C /usr/local/bin && \
     cf --version
 
 USER piper
 WORKDIR ${USER_HOME}
 
-ARG MTA_PLUGIN_VERSION=2.4.1
+ARG MTA_PLUGIN_VERSION=2.5.1
 ARG MTA_PLUGIN_URL=https://github.com/cloudfoundry-incubator/multiapps-cli-plugin/releases/download/v${MTA_PLUGIN_VERSION}/mta_plugin_linux_amd64
 
 RUN cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org && \
     cf install-plugin blue-green-deploy -f -r CF-Community && \
     cf install-plugin ${MTA_PLUGIN_URL} -f && \
-    cf install-plugin Create-Service-Push -f -r CF-Community && \
     cf plugins
 
 # allow anybody to read/write/exec at HOME
