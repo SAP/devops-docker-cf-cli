@@ -22,10 +22,13 @@ WORKDIR ${USER_HOME}
 
 ARG MTA_PLUGIN_VERSION=2.5.1
 ARG MTA_PLUGIN_URL=https://github.com/cloudfoundry-incubator/multiapps-cli-plugin/releases/download/v${MTA_PLUGIN_VERSION}/mta_plugin_linux_amd64
+ARG CSPUSH_PLUGIN_VERSION=1.3.2
+ARG CSPUSH_PLUGIN_URL=https://github.com/dawu415/CF-CLI-Create-Service-Push-Plugin/releases/download/${CSPUSH_PLUGIN_VERSION}/CreateServicePushPlugin.linux64
 
 RUN cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org && \
     cf install-plugin blue-green-deploy -f -r CF-Community && \
     cf install-plugin ${MTA_PLUGIN_URL} -f && \
+    cf install-plugin ${CSPUSH_PLUGIN_URL} -f && \
     cf plugins
 
 # allow anybody to read/write/exec at HOME
