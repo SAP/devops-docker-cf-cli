@@ -1,4 +1,6 @@
-## Cloud Foundry Command Line Interface (CLI)
+# Cloud Foundry Command Line Interface (CLI)
+
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP/devops-docker-cf-cli)](https://api.reuse.software/info/github.com/SAP/devops-docker-cf-cli)
 
 This [_Dockerfile_](https://docs.docker.com/engine/reference/builder/) can be used in _Continuous Delivery_ (CD) pipelines for SAP development projects.
 The image is optimized for use with project ["Piper"](https://github.com/SAP/jenkins-library) on [Jenkins](https://jenkins.io/).
@@ -57,3 +59,7 @@ export CX_INFRA_IT_CF_USERNAME="myusername"
 export CX_INFRA_IT_CF_PASSWORD="mypassword"
 ./runTests.sh
 ```
+
+## Licensing
+
+Copyright 2017-2021 SAP SE or an SAP affiliate company and devops-docker-cf-cli contributors. Please see our [LICENSE](LICENSE) for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](https://api.reuse.software/info/github.com/SAP/devops-docker-cf-cli).
