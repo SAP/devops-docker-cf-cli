@@ -29,6 +29,7 @@ RUN cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org && \
     cf install-plugin blue-green-deploy -f -r CF-Community && \
     cf install-plugin ${MTA_PLUGIN_URL} -f && \
     cf install-plugin ${CSPUSH_PLUGIN_URL} -f && \
+    cf install-plugin -r CF-Community "html5-plugin" -f && \
     cf plugins
 
 # allow anybody to read/write/exec at HOME
