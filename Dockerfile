@@ -12,23 +12,26 @@ RUN apt-get update && \
 
 # add group & user
 ARG USER_HOME=/home/piper
+ARG CFCLI_VERSION
+
 RUN addgroup -gid 1000 piper && \
     useradd piper --uid 1000 --gid 1000 --shell /bin/bash --home-dir "${USER_HOME}" --create-home && \
-    curl --location --silent "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=v7&source=github" | tar -zx -C /usr/local/bin && \
+    LATEST_CFCLI=$(curl -s https://api.github.com/repos/cloudfoundry/cli/releases/latest | grep tag_name | grep -v beta | cut -d \" -f 4 | tr -d v) && \
+    curl --location --silent "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=${CFCLI_VERSION:-$LATEST_CFCLI}&source=github" | tar -zx -C /usr/local/bin && \
     cf --version
 
 USER piper
 WORKDIR ${USER_HOME}
 
-ARG MTA_PLUGIN_VERSION=2.7.0
-ARG MTA_PLUGIN_URL=https://github.com/cloudfoundry-incubator/multiapps-cli-plugin/releases/download/v${MTA_PLUGIN_VERSION}/multiapps-plugin.linux64
-ARG CSPUSH_PLUGIN_VERSION=1.3.2
-ARG CSPUSH_PLUGIN_URL=https://github.com/dawu415/CF-CLI-Create-Service-Push-Plugin/releases/download/${CSPUSH_PLUGIN_VERSION}/CreateServicePushPlugin.linux64
+ARG MTA_PLUGIN_VERSION
+ARG CSPUSH_PLUGIN_VERSION
 
 RUN cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org && \
     cf install-plugin blue-green-deploy -f -r CF-Community && \
-    cf install-plugin ${MTA_PLUGIN_URL} -f && \
-    cf install-plugin ${CSPUSH_PLUGIN_URL} -f && \
+    LATEST_MTA=$(curl -s https://api.github.com/repos/cloudfoundry/multiapps-cli-plugin/releases/latest | grep tag_name | cut -d \" -f 4 | tr -d v) && \
+    cf install-plugin https://github.com/cloudfoundry/multiapps-cli-plugin/releases/download/v${MTA_PLUGIN_VERSION:-$LATEST_MTA}/multiapps-plugin.linux64 -f && \
+    LATEST_CSPUSH=$(curl -s https://api.github.com/repos/dawu415/CF-CLI-Create-Service-Push-Plugin/releases/latest | grep tag_name | cut -d \" -f 4 | head -n 1) && \
+    cf install-plugin https://github.com/dawu415/CF-CLI-Create-Service-Push-Plugin/releases/download/${CSPUSH_PLUGIN_VERSION:-$LATEST_CSPUSH}/CreateServicePushPlugin.linux64 -f && \
     cf install-plugin -r CF-Community "html5-plugin" -f && \
     cf plugins
 
