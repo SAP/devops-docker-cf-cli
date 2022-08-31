@@ -30,7 +30,7 @@ RUN cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org && \
     cf install-plugin blue-green-deploy -f -r CF-Community && \
     LATEST_MTA=$(curl -s https://api.github.com/repos/cloudfoundry/multiapps-cli-plugin/releases/latest | grep tag_name | cut -d \" -f 4 | tr -d v) && \
     cf install-plugin https://github.com/cloudfoundry/multiapps-cli-plugin/releases/download/v${MTA_PLUGIN_VERSION:-$LATEST_MTA}/multiapps-plugin.linux64 -f && \
-    LATEST_CSPUSH=$(curl -s https://api.github.com/repos/dawu415/CF-CLI-Create-Service-Push-Plugin/releases/latest | grep tag_name | cut -d \" -f 4 | head -n 1) && \
+    LATEST_CSPUSH=$(curl -s https://api.github.com/repos/dawu415/CF-CLI-Create-Service-Push-Plugin/releases/latest | grep tag_name | cut -d \" -f 4) && \
     cf install-plugin https://github.com/dawu415/CF-CLI-Create-Service-Push-Plugin/releases/download/${CSPUSH_PLUGIN_VERSION:-$LATEST_CSPUSH}/CreateServicePushPlugin.linux64 -f && \
     cf install-plugin -r CF-Community "html5-plugin" -f && \
     cf plugins
