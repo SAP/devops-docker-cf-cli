@@ -1,5 +1,9 @@
 FROM buildpack-deps:bullseye-curl
 
+LABEL org.opencontainers.image.source=https://github.com/SAP/devops-docker-cf-cli
+LABEL org.opencontainers.image.description="An image for the cf cli"
+LABEL org.opencontainers.image.licenses=Apache-2.0
+
 ENV VERSION 0.1
 
 # https://github.com/hadolint/hadolint/wiki/DL4006
