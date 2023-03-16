@@ -26,7 +26,7 @@ RUN addgroup -gid 1000 piper && \
 USER piper
 WORKDIR ${USER_HOME}
 
-ARG MTA_PLUGIN_VERSION=3.0.1
+ARG MTA_PLUGIN_VERSION=3.0.2
 ARG MTA_PLUGIN_URL=https://github.com/cloudfoundry-incubator/multiapps-cli-plugin/releases/download/v${MTA_PLUGIN_VERSION}/multiapps-plugin.linux64
 ARG CSPUSH_PLUGIN_VERSION=1.3.2
 ARG CSPUSH_PLUGIN_URL=https://github.com/dawu415/CF-CLI-Create-Service-Push-Plugin/releases/download/${CSPUSH_PLUGIN_VERSION}/CreateServicePushPlugin.linux64
