@@ -27,9 +27,9 @@ jobs:
         run: |
           echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USER }} --password-stdin
           echo "${{ secrets.CR_PAT }}" | docker login https://ghcr.io -u ${{ secrets.CR_USER }} --password-stdin
-          docker build -t ppiper/cf-cli:${{ env.PIPER_version }} .
-          docker tag ppiper/cf-cli:${{ env.PIPER_version }} ghcr.io/sap/ppiper-cf-cli:${{ env.PIPER_version }}
-          docker push ppiper/cf-cli:${{ env.PIPER_version }}
+          docker build -t sapcom/ppiper-cf-cli:${{ env.PIPER_version }} .
+          docker tag sapcom/ppiper-cf-cli:${{ env.PIPER_version }} ghcr.io/sap/ppiper-cf-cli:${{ env.PIPER_version }}
+          docker push sapcom/ppiper-cf-cli:${{ env.PIPER_version }}
           docker push ghcr.io/sap/ppiper-cf-cli:${{ env.PIPER_version }}
       - uses: SAP/project-piper-action@master
         with:
