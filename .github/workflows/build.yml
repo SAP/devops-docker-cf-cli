@@ -1,0 +1,10 @@
+on: push
+name: Build image
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Build
+      run: |
+        docker build .
