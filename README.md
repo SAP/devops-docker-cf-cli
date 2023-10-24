@@ -11,7 +11,7 @@ Introductory material and a lot of SAP scenarios not covered by project "Piper" 
 
 ## About this repository
 
-Dockerfile for an image with the Cloud Foundry CLI and plugins for blue-green deployment and Multi-Target Applications (MTA).
+Dockerfile for an image with the Cloud Foundry CLI and plugins for Multi-Target Applications (MTA).
 
 ## Download
 
