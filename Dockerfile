@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.source=https://github.com/SAP/devops-docker-cf-cl
 LABEL org.opencontainers.image.description="An image for the cf cli"
 LABEL org.opencontainers.image.licenses=Apache-2.0
 
-ENV VERSION 0.1
+ENV VERSION=0.1
 
 # https://github.com/hadolint/hadolint/wiki/DL4006
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -19,9 +19,14 @@ RUN apt-get update && \
 # add group & user
 ARG USER_HOME=/home/piper
 RUN addgroup -gid 1000 piper && \
-    useradd piper --uid 1000 --gid 1000 --shell /bin/bash --home-dir "${USER_HOME}" --create-home && \
-    curl --location --silent "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=v8&source=github" | tar -zx -C /usr/local/bin && \
+    useradd piper --uid 1000 --gid 1000 --shell /bin/bash --home-dir "${USER_HOME}" --create-home
+    
+ARG INSTALL_DIR=/usr/local/bin
+RUN curl --location --silent "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=v8&source=github" | tar -zx -C "${INSTALL_DIR}" && \
     cf --version
+
+RUN curl https://cli.btp.cloud.sap/btpcli-install.sh | bash -s -- -o "${INSTALL_DIR}" -v latest && \
+    btp --version
 
 USER piper
 WORKDIR ${USER_HOME}
