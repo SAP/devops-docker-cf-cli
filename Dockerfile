@@ -31,7 +31,7 @@ RUN curl https://cli.btp.cloud.sap/btpcli-install.sh | bash -s -- -o "${INSTALL_
 USER piper
 WORKDIR ${USER_HOME}
 
-ARG MTA_PLUGIN_VERSION=3.5.0
+ARG MTA_PLUGIN_VERSION=3.6.0
 ARG MTA_PLUGIN_URL=https://github.com/cloudfoundry/multiapps-cli-plugin/releases/download/v${MTA_PLUGIN_VERSION}/multiapps-plugin.linux64
 ENV MULTIAPPS_DISABLE_UPLOAD_PROGRESS_BAR=true
 ARG CSPUSH_PLUGIN_VERSION=1.3.2
