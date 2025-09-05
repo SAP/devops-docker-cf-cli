@@ -20,7 +20,7 @@ RUN apt-get update && \
 ARG USER_HOME=/home/piper
 RUN addgroup -gid 1000 piper && \
     useradd piper --uid 1000 --gid 1000 --shell /bin/bash --home-dir "${USER_HOME}" --create-home
-    
+
 ARG INSTALL_DIR=/usr/local/bin
 RUN curl --location --silent "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=v8&source=github" | tar -zx -C "${INSTALL_DIR}" && \
     cf --version
@@ -31,6 +31,8 @@ RUN curl https://cli.btp.cloud.sap/btpcli-install.sh | bash -s -- -o "${INSTALL_
 USER piper
 WORKDIR ${USER_HOME}
 
+# Set user agent header suffix for multiapps CLI plugin
+ENV MULTIAPPS_USER_AGENT_SUFFIX="ppiper/cf-cli"
 ARG MTA_PLUGIN_VERSION=3.7.0
 ARG MTA_PLUGIN_URL=https://github.com/cloudfoundry/multiapps-cli-plugin/releases/download/v${MTA_PLUGIN_VERSION}/multiapps-plugin.linux64
 ENV MULTIAPPS_DISABLE_UPLOAD_PROGRESS_BAR=true
