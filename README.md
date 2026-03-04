@@ -21,6 +21,8 @@ This image is published to [Docker Hub](https://hub.docker.com/r/ppiper/cf-cli) 
 docker pull ppiper/cf-cli
 ```
 
+⚠️ **Important Notice:** The GitHub Container Registry (ghcr.io) for this project is no longer being updated. Please use the Docker Hub registry instead: `docker pull ppiper/cf-cli`
+
 ## Build
 
 To build this image locally, open a terminal in the directory of the Dockerfile and run
