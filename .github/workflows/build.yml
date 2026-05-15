@@ -1,5 +1,9 @@
 on: push
 name: Build image
+
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
